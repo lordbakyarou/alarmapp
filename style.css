@@ -61,3 +61,29 @@ h1 {
   font-size: 24px;
   text-align: center;
 }
+
+#innerUserInput {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 20px;
+  background: #f0f757;
+  width: 849px;
+  height: 132px;
+  align-items: center;
+}
+
+#timesUp {
+  font-size: 48px;
+  background: #f0f757;
+  color: #34344a;
+  font-weight: 500;
+}
+
+#innerButton {
+  border-radius: 36px;
+  background: #34344a;
+  font-size: 18px;
+  color: #fff;
+  padding: 20px 50px;
+}

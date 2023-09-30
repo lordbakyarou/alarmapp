@@ -26,6 +26,8 @@ function setTimer() {
   thisis(newDiv, date);
 
   document.body.appendChild(newDiv);
+
+  userSetTime.innerText = "00 : 00 : 00";
 }
 
 function thisis(newDiv, date) {
@@ -37,6 +39,29 @@ function thisis(newDiv, date) {
     <span contenteditable="true" id="userSetTime">${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}</span>
     <button onclick="setTimer()">Delete</button>
   </div>`;
+
+    console.log(
+      date.getHours() == "0" &&
+        date.getMinutes() == "0" &&
+        date.getSeconds() == "0"
+    );
+
+    if (
+      date.getHours() == "0" &&
+      date.getMinutes() == "0" &&
+      date.getSeconds() == "0"
+    ) {
+      const div = document.createElement("div");
+      div.id = "container";
+      newDiv.innerHTML = `<div id="innerUserInput" style="background-color:#F0F757;">
+      <span contenteditable="true" id="timesUp">Time Is Up !</span>
+      <button id="innerButton" onclick="setTimer()">Stop</button>
+    </div>`;
+
+      clearInterval(newInterval);
+
+      return;
+    }
   }, 1000);
 }
 
