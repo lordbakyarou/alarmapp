@@ -10,33 +10,64 @@ function setTimer() {
 
   const date = new Date(`2022-10-10T${str[0]}:${str[1]}:${str[2]}`);
   displaynone.style.display = "none";
-  date.setSeconds;
 
   //takeinput element and transform them
+  let hour =
+    date.getHours() >= 0 && date.getHours() <= 9
+      ? "0" + date.getHours()
+      : date.getHours();
+
+  let min =
+    date.getMinutes() >= 0 && date.getMinutes() <= 9
+      ? "0" + date.getMinutes()
+      : date.getMinutes();
+
+  let sec =
+    date.getSeconds() >= 0 && date.getSeconds() <= 9
+      ? "0" + date.getSeconds()
+      : date.getSeconds();
 
   //container Creation
   const newDiv = document.createElement("div");
   newDiv.id = "container";
   newDiv.innerHTML = `<div id="userInput">
   <span id="settime">Time Left:</span>
-  <span contenteditable="true" id="userSetTime">${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}</span>
+  <span contenteditable="true" id="userSetTime">${hour} : ${min} : ${sec}</span>
   <button onclick="setTimer()">Delete</button>
 </div>`;
 
-  thisis(newDiv, date);
+  //creating new intervaldiv
+  intervalDiv(newDiv, date);
 
   document.body.appendChild(newDiv);
 
+  //after every click userInput will be set back to this
   userSetTime.innerText = "00 : 00 : 00";
 }
 
-function thisis(newDiv, date) {
+//where magic happens
+function intervalDiv(newDiv, date) {
   let newInterval = setInterval(() => {
     date.setSeconds(date.getSeconds() - 1);
+    let hour =
+      date.getHours() >= 0 && date.getHours() <= 9
+        ? "0" + date.getHours()
+        : date.getHours();
 
+    let min =
+      date.getMinutes() >= 0 && date.getMinutes() <= 9
+        ? "0" + date.getMinutes()
+        : date.getMinutes();
+
+    let sec =
+      date.getSeconds() >= 0 && date.getSeconds() <= 9
+        ? "0" + date.getSeconds()
+        : date.getSeconds();
+
+    //updation of time happens
     newDiv.innerHTML = `<div id="userInput">
     <span id="settime">Time Left:</span>
-    <span contenteditable="true" id="userSetTime">${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}</span>
+    <span contenteditable="true" id="userSetTime">${hour} : ${min} : ${sec}</span>
     <button onclick="setTimer()">Delete</button>
   </div>`;
 
