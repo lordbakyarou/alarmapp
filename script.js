@@ -34,6 +34,7 @@ function setTimer() {
   <span id="settime">Time Left:</span>
   <span contenteditable="true" id="userSetTime">${hour} : ${min} : ${sec}</span>
   <button onclick="setTimer()">Delete</button>
+  <audio id="audioPlayer" src="a.mp3"></audio>
 </div>`;
 
   //creating new intervaldiv
@@ -83,13 +84,18 @@ function intervalDiv(newDiv, date) {
       date.getSeconds() == "0"
     ) {
       const div = document.createElement("div");
+      const audioPlayer = document.getElementById("audioPlayer");
+
       div.id = "container";
       newDiv.innerHTML = `<div id="innerUserInput" style="background-color:#F0F757;">
       <span contenteditable="true" id="timesUp">Time Is Up !</span>
-      <button id="innerButton" onclick="setTimer()">Stop</button>
+      <button id="innerButton" onclick="stopAudio(this)">Stop</button>
+      <audio id="audioPlayer" src="a.mp3"></audio>
     </div>`;
 
       clearInterval(newInterval);
+
+      audioPlayer.play();
 
       return;
     }
@@ -97,3 +103,6 @@ function intervalDiv(newDiv, date) {
 }
 
 // const currentTime = console.log(userSetTime.innerText);
+function stopAudio(element) {
+  element.nextSiblingElemnet.audioPlayer.stop();
+}
