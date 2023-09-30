@@ -10,7 +10,7 @@ function setTimer() {
 
   const date = new Date(`2022-10-10T${str[0]}:${str[1]}:${str[2]}`);
   displaynone.style.display = "none";
-  date.getSeconds;
+  date.setSeconds;
 
   //takeinput element and transform them
 
@@ -19,7 +19,7 @@ function setTimer() {
   newDiv.id = "container";
   newDiv.innerHTML = `<div id="userInput">
   <span id="settime">Time Left:</span>
-  <span contenteditable="true" id="userSetTime">${str[0]} : ${str[1]} : ${str[2]}</span>
+  <span contenteditable="true" id="userSetTime">${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}</span>
   <button onclick="setTimer()">Delete</button>
 </div>`;
 
@@ -30,6 +30,8 @@ function setTimer() {
 
 function thisis(newDiv, date) {
   let newInterval = setInterval(() => {
+    date.setSeconds(date.getSeconds() - 1);
+
     newDiv.innerHTML = `<div id="userInput">
     <span id="settime">Time Left:</span>
     <span contenteditable="true" id="userSetTime">${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}</span>
