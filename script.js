@@ -6,6 +6,7 @@ userSetTime.addEventListener("focus", () => {
 });
 
 function setTimer() {
+  let intervalId;
   let str = userSetTime.innerText.replaceAll(" ", "").split(":");
 
   const date = new Date(`2022-10-10T${str[0]}:${str[1]}:${str[2]}`);
@@ -33,7 +34,7 @@ function setTimer() {
   newDiv.innerHTML = `<div id="userInput">
   <span id="settime">Time Left:</span>
   <span contenteditable="true" id="userSetTime">${hour} : ${min} : ${sec}</span>
-  <button onclick="setTimer()">Delete</button>
+  <button onclick="deleteTimer(this)">Delete</button>
   <audio id="audioPlayer" src="a.mp3"></audio>
 </div>`;
 
@@ -47,8 +48,12 @@ function setTimer() {
 }
 
 //where magic happens
-function intervalDiv(newDiv, date) {
+function intervalDiv(newDiv, date, status) {
   let newInterval = setInterval(() => {
+    if (status === "delete") {
+      clearInterval(newInterval);
+    }
+
     date.setSeconds(date.getSeconds() - 1);
     let hour =
       date.getHours() >= 0 && date.getHours() <= 9
@@ -69,7 +74,7 @@ function intervalDiv(newDiv, date) {
     newDiv.innerHTML = `<div id="userInput">
     <span id="settime">Time Left:</span>
     <span contenteditable="true" id="userSetTime">${hour} : ${min} : ${sec}</span>
-    <button onclick="setTimer()">Delete</button>
+    <button onclick="deleteTimer(this)">Delete</button>
   </div>`;
 
     console.log(
@@ -90,12 +95,11 @@ function intervalDiv(newDiv, date) {
       newDiv.innerHTML = `<div id="innerUserInput" style="background-color:#F0F757;">
       <span contenteditable="true" id="timesUp">Time Is Up !</span>
       <button id="innerButton" onclick="stopAudio(this)">Stop</button>
-      <audio id="audioPlayer" src="a.mp3"></audio>
     </div>`;
 
       clearInterval(newInterval);
 
-      audioPlayer.play();
+      playAudio();
 
       return;
     }
@@ -105,4 +109,9 @@ function intervalDiv(newDiv, date) {
 // const currentTime = console.log(userSetTime.innerText);
 function stopAudio(element) {
   element.nextSiblingElemnet.audioPlayer.stop();
+}
+
+function playAudio() {
+  const play = new Audio("./a.mp3");
+  play.play();
 }

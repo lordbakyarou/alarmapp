@@ -35,8 +35,7 @@ h1 {
   gap: 20px;
   border-radius: 20px;
   background: #34344a;
-  width: 849px;
-  height: 132px;
+  padding: 50px;
   align-items: center;
 }
 
@@ -51,6 +50,7 @@ h1 {
   font-size: 18px;
   color: #34344a;
   padding: 20px 50px;
+  border: none;
 }
 
 #currentTimers {
@@ -68,8 +68,6 @@ h1 {
   gap: 20px;
   border-radius: 20px;
   background: #f0f757;
-  width: 849px;
-  height: 132px;
   align-items: center;
 }
 
@@ -86,4 +84,50 @@ h1 {
   font-size: 18px;
   color: #fff;
   padding: 20px 50px;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  #userSetTime {
+    font-size: 35px;
+  }
+
+  #settime {
+    font-size: 20px;
+  }
+
+  #userInput > button {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #userSetTime {
+    font-size: 15px;
+  }
+
+  #settime {
+    font-size: 12px;
+  }
+  #userInput > button {
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+
+  #userInput {
+    gap: 0px;
+    padding: 15px;
+  }
+
+  #innerButton {
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+  #timesUp {
+    font-size: 28px;
+  }
+  #innerUserInput {
+    gap: 0px;
+    padding: 15px;
+  }
 }
